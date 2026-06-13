@@ -97,7 +97,7 @@ private function getNim(Request $request)
         ], 403);
     }
 
-    $mahasiswa = Mahasiswa::select('nim', 'nama_lengkap')->get();
+    $mahasiswa = Mahasiswa::select('nim', 'nama_mhs')->get();
 
     return response()->json([
         'status' => 'success',
@@ -126,7 +126,7 @@ private function getNim(Request $request)
 
     $validatedData = $request->validate([
         'nim' => 'required|string|unique:mahasiswa,nim',
-        'nama_lengkap' => 'required|string|max:100',
+        'nama_mhs' => 'required|string|max:100',
         'jk' => 'required|in:L,P',
     ]);
 
@@ -214,7 +214,7 @@ public function show(Request $request, string $nim)
     }
 
     $validatedData = $request->validate([
-        'nama_lengkap' => 'sometimes|required|string|max:100',
+        'nama_mhs' => 'sometimes|required|string|max:100',
         'jk' => 'sometimes|required|in:L,P',
         'no_hp' => 'sometimes|nullable|string|max:20',
     ]);

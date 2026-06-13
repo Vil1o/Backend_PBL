@@ -16,7 +16,7 @@ class Mahasiswa extends Model
     // Kolom tabel mahasiswa yang boleh diisi secara massal
     protected $fillable = [
         'nim', 
-        'nama_lengkap', 
+        'nama_mhs', 
         'jk',
     ];
 
