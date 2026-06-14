@@ -1,4 +1,4 @@
-name: Deploy API to PBL VPS Service Mahasiswa 4E
+name: Deploy API to PBL VPS Mahasiswa 4E
 
 on:
   push:
@@ -8,7 +8,7 @@ jobs:
   deploy-to-vps-pbl:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy PBL Service Mahasiswa 4E
+      - name: Deploy PBL Mahasiswa 4E
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -18,9 +18,11 @@ jobs:
             cd /root/kelompok-3-4e/Backend_PBL
             
             git stash
+
             git pull origin main
             
             docker compose exec -T php composer install --no-interaction --prefer-dist --optimize-autoloader
+
             docker compose exec -T php php artisan migrate --force
                         
             docker compose exec -T php php artisan optimize:clear
