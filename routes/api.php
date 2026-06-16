@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\External\ExternalMahasiswaController;
-use App\Http\Controllers\Api\Admin\AdminMahasiswaController;
-use App\Http\Controllers\Api\Mahasiswa\MahasiswaProfileController; 
+use App\Http\Controllers\API\External\ExternalMahasiswaController;
+use App\Http\Controllers\API\Admin\AdminMahasiswaController;
+use App\Http\Controllers\API\Mahasiswa\MahasiswaProfileController; 
 // Import dua controller baru
-use App\Http\Controllers\Api\Mahasiswa\MahasiswaFamilyController;
-use App\Http\Controllers\Api\Mahasiswa\MahasiswaSchoolController;
+use App\Http\Controllers\API\Mahasiswa\MahasiswaFamilyController;
+use App\Http\Controllers\API\Mahasiswa\MahasiswaSchoolController;
 
 // 1. Endpoint Terbuka / Antar-Service
 Route::prefix('external')->group(function () {

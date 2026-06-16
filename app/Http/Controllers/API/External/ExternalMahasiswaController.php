@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\External;
+namespace App\Http\Controllers\API\External;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;

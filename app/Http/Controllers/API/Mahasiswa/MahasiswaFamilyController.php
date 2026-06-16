@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Mahasiswa;
+namespace App\Http\Controllers\API\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrangTua;
