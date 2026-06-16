@@ -6,14 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('detail_mahasiswa', function (Blueprint $table) {
-            $table->integer('id_detail', true);
-            $table->string('nim', 20); // Not null di file SQL
+            // Primary Key
+            $table->id('id_detail'); // int(11) AUTO_INCREMENT
+
+            // Foreign Key NIM (tidak boleh null karena data utama)
+            $table->string('nim', 20);
+
+            // Kolom Lainnya (Semua di-set Nullable sesuai gambar phpMyAdmin)
             $table->integer('id_kelas')->nullable();
-            $table->string('kebutuhan_khusus', 100)->nullable();
-            $table->boolean('biodata_valid')->nullable(); // boolean setara dengan tinyint(1)
+            $table->string('kebutuhan_khusus', 20)->nullable();
             $table->enum('jk', ['L', 'P'])->nullable();
             $table->string('tempat_lahir', 100)->nullable();
             $table->string('agama', 50)->nullable();
@@ -28,26 +35,31 @@ return new class extends Migration
             $table->string('pekerjaan', 100)->nullable();
             $table->string('instansi_pekerjaan', 100)->nullable();
             $table->string('no_telp', 20)->nullable();
-            $table->string('email_kampus', 100)->nullable();
+            $table->string('email_pribadi', 100)->nullable();
             $table->string('rt', 5)->nullable();
             $table->string('rw', 5)->nullable();
-            $table->string('kecamatan', 100)->nullable();
-            $table->string('desa', 100)->nullable();
             $table->string('status_tinggal', 50)->nullable();
             $table->integer('id_prov')->nullable();
             $table->integer('id_kota')->nullable();
-            $table->integer('id_kodepos')->nullable();
-            $table->integer('id_status')->nullable();
-            $table->integer('id_ortu')->nullable();
-            $table->integer('id_asal_sekolah')->nullable();
 
-            // Foreign Key
-            $table->foreign('nim')
-                  ->references('nim')->on('mahasiswa')
-                  ->onDelete('cascade');
+            // Kolom Foreign Key Baru (Nullable agar mahasiswa bisa isi bertahap)
+            // Menggunakan unsignedBigInteger/unsignedInteger menyesuaikan tipe PK tabel asal
+            $table->unsignedBigInteger('id_orang_tua')->nullable();
+            $table->unsignedBigInteger('id_asal_sekolah')->nullable();
+
+            // Peresmian Hubungan Foreign Key di Database
+            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
+            $table->foreign('id_orang_tua')->references('id_orang_tua')->on('orang_tua')->onDelete('set null');
+            $table->foreign('id_asal_sekolah')->references('id_asal_sekolah')->on('asal_sekolah')->onDelete('set null');
+            
+            // Tambahkan ini jika menggunakan fitur bawaan timestamps Laravel
+            // $table->timestamps(); 
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('detail_mahasiswa');

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('tahun_akademik', function (Blueprint $table) {
             // Menggunakan integer bawaan dengan auto_increment untuk menyamai int(11) di SQL
             $table->integer('id_tahun_akademik', true); 
-            $table->string('tahun_masuk', 4);
+            $table->string('tahun_masuk', 15);
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('alamat')->nullable();
             $table->integer('id_kategori')->nullable();
             $table->integer('id_beasiswa')->nullable();
+            $table->string('email_kampus', 100)->nullable();
 
             // Foreign Key
             $table->foreign('id_tahun_akademik')

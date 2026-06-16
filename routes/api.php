@@ -1,16 +1,37 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-// BARIS INI YANG WAJIB ADA:
-use App\Http\Controllers\API\MahasiswaController; 
 
+use App\Http\Controllers\Api\External\ExternalMahasiswaController;
+use App\Http\Controllers\Api\Admin\AdminMahasiswaController;
+use App\Http\Controllers\Api\Mahasiswa\MahasiswaProfileController; 
+// Import dua controller baru
+use App\Http\Controllers\Api\Mahasiswa\MahasiswaFamilyController;
+use App\Http\Controllers\Api\Mahasiswa\MahasiswaSchoolController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
+// 1. Endpoint Terbuka / Antar-Service
+Route::prefix('external')->group(function () {
+    Route::get('/mahasiswa', [ExternalMahasiswaController::class, 'index']);
+    Route::get('/mahasiswa/{nim}', [ExternalMahasiswaController::class, 'show']);
+});
 
-Route::apiResource('mahasiswa', MahasiswaController::class);
+// 2. Endpoint Terproteksi Role Admin
+Route::middleware('check.role:superadmin,admin_mahasiswa')->prefix('admin')->group(function () {
+    Route::apiResource('mahasiswa', AdminMahasiswaController::class);
+});
 
+// 3. Endpoint Terproteksi Role Mahasiswa (Self-Service)
+Route::middleware('check.role:mahasiswa')->prefix('mahasiswa')->group(function () {
+    // Rute Profil Utama
+    Route::get('/profile', [MahasiswaProfileController::class, 'showProfile']);
+    Route::put('/profile', [MahasiswaProfileController::class, 'updateDetail']);
+
+    // Rute Data Keluarga (Orang Tua / Wali)
+    Route::get('/family', [MahasiswaFamilyController::class, 'showFamily']);
+    Route::put('/family', [MahasiswaFamilyController::class, 'storeOrUpdateFamily']);
+    Route::post('/family', [MahasiswaFamilyController::class, 'storeOrUpdateFamily']); // Tambahkan jika butuh POST
+
+    // Rute Data Asal Sekolah
+    Route::get('/school', [MahasiswaSchoolController::class, 'show']);
+    Route::put('/school', [MahasiswaSchoolController::class, 'updateOrCreate']);
+});
