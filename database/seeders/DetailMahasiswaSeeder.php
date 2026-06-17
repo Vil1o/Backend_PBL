@@ -10,7 +10,7 @@ class DetailMahasiswaSeeder extends Seeder
 {
     public function run()
     {
-        $tokenKelompok1 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYWRtaW40ZTA2LnZwcy1wb2xpYmFuLm15LmlkL2FwaS9ha2FkZW1pay9sb2dpbiIsImlhdCI6MTc4MTY1ODM2MSwiZXhwIjoxNzgxNjYxOTYxLCJuYmYiOjE3ODE2NTgzNjEsImp0aSI6InRNOWZ4U0RSTVh1TFJqNk8iLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInJvbGVfaWRzIjpbMV19.8N1jBlSFQFFlzSEIdnAHZVJ5YqotWpSajzMg2uLIL7c';
+        $tokenKelompok1 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYWRtaW40ZTA2LnZwcy1wb2xpYmFuLm15LmlkL2FwaS9ha2FkZW1pay9sb2dpbiIsImlhdCI6MTc4MTY1ODkyNCwiZXhwIjoxNzgxNjYyNTI0LCJuYmYiOjE3ODE2NTg5MjQsImp0aSI6IjB4UXFuTVk1ekRkOVlFUU0iLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInJvbGVfaWRzIjpbMV19.N8hlYhElggHp8yjtx3XTxPbU6r20ummKAOVeZ655d4k';
 
         $mahasiswaList = DB::table('mahasiswa')->get();
         
