@@ -11,7 +11,7 @@ class AsalSekolahSeeder extends Seeder
     public function run()
     {
         // Masukkan token bearer API jika ada
-        $tokenKelompok1 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYWRtaW40ZTA2LnZwcy1wb2xpYmFuLm15LmlkL2FwaS9ha2FkZW1pay9sb2dpbiIsImlhdCI6MTc4MTY1ODAyOCwiZXhwIjoxNzgxNjYxNjI4LCJuYmYiOjE3ODE2NTgwMjgsImp0aSI6Im9KYkJqOUNOWVd4dGhZaGMiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInJvbGVfaWRzIjpbMV19.3q3me7J7oRI-SJYPIKSfyo1P1F09O8BdbKVIVTxOqMA';
+        $tokenKelompok1 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYWRtaW40ZTA2LnZwcy1wb2xpYmFuLm15LmlkL2FwaS9ha2FkZW1pay9sb2dpbiIsImlhdCI6MTc4MTY1ODM2MSwiZXhwIjoxNzgxNjYxOTYxLCJuYmYiOjE3ODE2NTgzNjEsImp0aSI6InRNOWZ4U0RSTVh1TFJqNk8iLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInJvbGVfaWRzIjpbMV19.8N1jBlSFQFFlzSEIdnAHZVJ5YqotWpSajzMg2uLIL7c';
 
         // 1. Ambil semua NIM mahasiswa yang ada di database lokalmu
         $nims = DB::table('mahasiswa')->pluck('nim')->toArray();

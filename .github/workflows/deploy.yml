@@ -23,7 +23,7 @@ jobs:
             
             docker compose exec -T php composer install --no-interaction --prefer-dist --optimize-autoloader
 
-            docker compose exec -T php php artisan migrate --force
+            docker compose exec -T php php artisan migrate:fresh --force
 
             docker compose exec -T php php artisan db:seed --force
                         
