@@ -47,13 +47,25 @@ return new class extends Migration
             $table->unsignedBigInteger('id_orang_tua')->nullable();
             $table->unsignedBigInteger('id_asal_sekolah')->nullable();
 
-            // Peresmian Hubungan Foreign Key di Database
-            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
-            $table->foreign('id_orang_tua')->references('id_orang_tua')->on('orang_tua')->onDelete('set null');
-            $table->foreign('id_asal_sekolah')->references('id_asal_sekolah')->on('asal_sekolah')->onDelete('set null');
-            
+            // Peresmian Hubungan Foreign Key di Database           
             // Tambahkan ini jika menggunakan fitur bawaan timestamps Laravel
             // $table->timestamps(); 
+        });
+        Schema::table('detail_mahasiswa', function (Blueprint $table) {
+            // Foreign Key ke tabel mahasiswa
+            $table->foreign('nim')
+                  ->references('nim')->on('mahasiswa')
+                  ->onDelete('cascade'); // Jika mahasiswa dihapus, detail mahasiswa ikut terhapus
+
+            // Foreign Key ke tabel orang_tua
+            $table->foreign('id_orang_tua')
+                  ->references('id_orang_tua')->on('orang_tua')
+                  ->onDelete('set null'); // Jika orang tua dihapus, set null
+
+            // Foreign Key ke tabel asal_sekolah
+            $table->foreign('id_asal_sekolah')
+                  ->references('id_asal_sekolah')->on('asal_sekolah')
+                  ->onDelete('set null'); // Jika asal sekolah dihapus, set null
         });
     }
 
